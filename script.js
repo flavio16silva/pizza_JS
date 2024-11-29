@@ -40,7 +40,7 @@ pizzaJson.map((item, index) => {
         doc('.pizzaInfo--price').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`
 
         //removendo o selected da tag
-        doc('.pizzaInfo--size selected').classList.remove('selected')
+        doc('.pizzaInfo--size.selected').classList.remove('selected')
         //varrendo o array para saber o tamanho das pizzas
         docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
             if(sizeIndex == 2){
