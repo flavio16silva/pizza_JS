@@ -1,3 +1,6 @@
+//Variavel da quantidade de pizzas da modal:
+let modalQtd = 1
+
 //Substituindo o excessivo uso do 'querySelector' no codigo por uma função
     //retorna o item:
 const doc = elemento => document.querySelector(elemento) 
@@ -30,6 +33,7 @@ pizzaJson.map((item, index) => {
     //Desativando a atualização da pagina no momento do click
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault()
+        let modalQtd = 1 //iniciando quantidade de pizzas na modal
         //preenchendo a pizza na modal
         let key = e.target.closest('.pizza-item').getAttribute('data-key')
         
@@ -49,7 +53,9 @@ pizzaJson.map((item, index) => {
             size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]
         })
 
-
+        //iniciando a QTD das pizzas na modal
+        doc('.pizzaInfo--qt').innerHTML = modalQtd
+        
         //modal
         doc('.pizzaWindowArea').style.opacity = 0
         doc('.pizzaWindowArea').style.display = 'flex'
