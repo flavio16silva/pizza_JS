@@ -1,5 +1,9 @@
+//Variavel para adicionar tudo dentro do carrinho. Gerar um array:
+let car = []
 //Variavel da quantidade de pizzas da modal:
 let modalQtd = 1
+//Variavel informar qual é a pizza
+let modalKey = 0
 
 //Substituindo o excessivo uso do 'querySelector' no codigo por uma função
     //retorna o item:
@@ -28,10 +32,11 @@ pizzaJson.map((item, index) => {
     //Adicionando evento de click para abrir o modal 
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault()
-        //preenchendo a pizza na modal
+        //pegando e preenchendo a pizza na modal
         let key = e.target.closest('.pizza-item').getAttribute('data-key')
         
-        modalQtd = 1 //iniciando quantidade de pizzas na modal
+        modalQtd = 1 //iniciando quantidade de pizzas na modal - resetando
+        modalKey = key //informar qual é a pizza
         
         // preenchimento das informações da modal
         doc('.pizzaBig img').src = pizzaJson[key].img
@@ -99,4 +104,9 @@ docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
         doc('.pizzaInfo--size.selected').classList.remove('selected')
         size.classList.add('selected')        
     })
+})
+
+//Adicionando quantidades no carrinho
+doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
+
 })
