@@ -50,7 +50,6 @@ pizzaJson.map((item, index) => {
         })
 
         //iniciando a QTD das pizzas na modal
-        console.log(doc('.pizzaInfo--qt'))
         doc('.pizzaInfo--qt').innerHTML = modalQtd
         
         //modal
