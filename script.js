@@ -46,7 +46,7 @@ pizzaJson.map((item, index) => {
             if(sizeIndex == 2){
                 size.classList.add('selected')
             }
-            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]
+            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]           
         })
 
         //iniciando a QTD das pizzas na modal
@@ -91,4 +91,12 @@ doc('.pizzaInfo--qtmenos').addEventListener('click', ()=> {
         modalQtd--
         doc('.pizzaInfo--qt').innerHTML = modalQtd
     }
+})
+
+//Tamanhos das pizzas na modal
+docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
+    size.addEventListener('click', (e)=> {
+        doc('.pizzaInfo--size.selected').classList.remove('selected')
+        size.classList.add('selected')        
+    })
 })
