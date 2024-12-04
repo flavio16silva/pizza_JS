@@ -30,7 +30,7 @@ pizzaJson.map((item, index) => {
     //descrição da pizza
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description
 
-    //Desativando a atualização da pagina no momento do click
+    //Adicionando evento de click para abrir o modal 
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault()
         let modalQtd = 1 //iniciando quantidade de pizzas na modal
