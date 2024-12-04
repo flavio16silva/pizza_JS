@@ -108,5 +108,13 @@ docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
 
 //Adicionando quantidades no carrinho
 doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
+    let size = parseInt(doc('.pizzaInfo--size.selected').getAttribute('data-key'))
+    //Objeto de retorno com os itens da pizza
+    car.push({
+        id: pizzaJson[modalKey].id,
+        size,
+        qt: modalQtd
+    })
 
+    closeModal()
 })
