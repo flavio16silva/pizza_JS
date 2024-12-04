@@ -17,13 +17,8 @@ pizzaJson.map((item, index) => {
     pizzaItem.querySelector('.pizza-item--img img').src = item.img
 
     //preço da pizza
-    //pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`
-    const pizzaPrice = item.price.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-      pizzaItem.querySelector(".pizza-item--price").innerHTML = `${pizzaPrice}`;
-
+    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`
+  
     //nome da pizza
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name
 
@@ -33,15 +28,16 @@ pizzaJson.map((item, index) => {
     //Adicionando evento de click para abrir o modal 
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault()
-        let modalQtd = 1 //iniciando quantidade de pizzas na modal
         //preenchendo a pizza na modal
         let key = e.target.closest('.pizza-item').getAttribute('data-key')
+        
+        modalQtd = 1 //iniciando quantidade de pizzas na modal
         
         // preenchimento das informações da modal
         doc('.pizzaBig img').src = pizzaJson[key].img
         doc('.pizzaInfo h1').innerHTML = pizzaJson[key].name
         doc('.pizzaInfo--desc').innerHTML = pizzaJson[key].description
-        doc('.pizzaInfo--price').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`
+        doc('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`
 
         //removendo o selected da tag
         doc('.pizzaInfo--size.selected').classList.remove('selected')
@@ -54,6 +50,7 @@ pizzaJson.map((item, index) => {
         })
 
         //iniciando a QTD das pizzas na modal
+        console.log(doc('.pizzaInfo--qt'))
         doc('.pizzaInfo--qt').innerHTML = modalQtd
         
         //modal
@@ -62,6 +59,7 @@ pizzaJson.map((item, index) => {
         setTimeout( () => {
             doc('.pizzaWindowArea').style.opacity = 1
         }, 200)
+        
     })
     
     
@@ -71,4 +69,8 @@ pizzaJson.map((item, index) => {
 })
 
 
-// Eventos do Modal
+//Eventos do Modal
+function closeModal(){
+    doc('.pizzaWindowArea').style.opacity = 0
+
+}
