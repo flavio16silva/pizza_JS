@@ -71,5 +71,11 @@ pizzaJson.map((item, index) => {
 //Eventos do Modal
 function closeModal(){
     doc('.pizzaWindowArea').style.opacity = 0
-
+    setTimeout(() => {
+         doc('.pizzaWindowArea').style.display = 'none'
+    }, 500)
 }
+
+docAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=> {
+    item.addEventListener('click', closeModal)
+})
