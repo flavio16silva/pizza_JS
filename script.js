@@ -79,3 +79,16 @@ function closeModal(){
 docAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=> {
     item.addEventListener('click', closeModal)
 })
+
+// Ação do modal de '+' da modal
+doc('.pizzaInfo--qtmais').addEventListener('click', ()=> {
+    modalQtd++
+    doc('.pizzaInfo--qt').innerHTML = modalQtd
+})
+// Ação do modal de '-' da modal
+doc('.pizzaInfo--qtmenos').addEventListener('click', ()=> {
+    if(modalQtd > 1){
+        modalQtd--
+        doc('.pizzaInfo--qt').innerHTML = modalQtd
+    }
+})
