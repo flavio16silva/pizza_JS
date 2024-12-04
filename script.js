@@ -7,7 +7,7 @@ const doc = elemento => document.querySelector(elemento)
     //retorna um array com os itens que achou:
 const docAll = elemento => document.querySelectorAll(elemento) 
 
-//Parametros do array= retorna cada pizza e também o index delas
+//Parametros do array = retorna cada pizza e o index - Listagem das pizzas
 pizzaJson.map((item, index) => {
     let pizzaItem = doc('.models .pizza-item').cloneNode(true)
 
@@ -69,3 +69,6 @@ pizzaJson.map((item, index) => {
     doc('.pizza-area').append(pizzaItem)
 
 })
+
+
+// Eventos do Modal
