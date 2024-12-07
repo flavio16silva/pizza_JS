@@ -109,8 +109,18 @@ docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
 //Adicionando quantidades no carrinho
 doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
     let size = parseInt(doc('.pizzaInfo--size.selected').getAttribute('data-key'))
+
+    //Verifica identificador das pizzas para add no carrinho - criar um unico array 
+    let indentifier = pizzaJson[modalKey].id+'@'+size
+
+    //Adicionando as pizzas no carrinho
+    let addKey = car.findIndex((item) => item.indentifier == indentifier)
+    if(addKey > -1){
+        car[addKey].qt += modalQtd
+    }
     //Objeto de retorno com os itens da pizza
     car.push({
+        indentifier,
         id: pizzaJson[modalKey].id,
         size,
         qt: modalQtd
