@@ -134,10 +134,38 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
 function updateCar() {
     if(car.length > 0){
         doc('aside').classList.add('show')
+        //zerando e mostrando a lista dos itens no carrinho
+        doc('.cart').innerHTML = ''
+
         //Retornando o item inteiro para o carrinho
         for(let i in car){
             let pizzaItem = pizzaJson.find((item) => item.id == car[i].id)
-            console.log(pizzaItem)
+
+            //Clonar os itens e exibir na tela
+            let carItem = doc('.models .cart--item').cloneNode(true)
+
+            let pizzaSizeName //iniciando a variavel
+            switch(car[i].size){
+                    case 0:
+                        pizzaSizeName = 'P'
+                        break;
+                    case 1:
+                        pizzaSizeName = 'M'  
+                        break;
+                    case 2:
+                        pizzaSizeName = 'G'
+                        break;   
+            }            
+            //Concatenar nome e tamanho da pizza e mostrar no carrinho
+            let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`
+
+            //Mostra itens no carrinho
+            carItem.querySelector('img').src = pizzaItem.img
+            carItem.querySelector('.cart--item-nome').innerHTML = pizzaName
+            carItem.querySelector('.cart--item--qt').innerHTML = car[i].qt
+
+            //Add os itens e exibir na tela
+            doc('.cart').append(carItem)
         }
     } else {
         doc('aside').classList.remove('show')
