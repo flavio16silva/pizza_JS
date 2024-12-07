@@ -117,14 +117,24 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
     let addKey = car.findIndex((item) => item.indentifier == indentifier)
     if(addKey > -1){
         car[addKey].qt += modalQtd
+    } else {
+        //Objeto de retorno com os itens da pizza
+        car.push({
+            indentifier,
+            id: pizzaJson[modalKey].id,
+            size,
+            qt: modalQtd
+        })
     }
-    //Objeto de retorno com os itens da pizza
-    car.push({
-        indentifier,
-        id: pizzaJson[modalKey].id,
-        size,
-        qt: modalQtd
-    })
-
+    updateCar()
     closeModal()
 })
+
+//Atualizar o carrinho de compras
+function updateCar() {
+    if(car.length > 0){
+        doc('aside').classList.add('show')
+    } else {
+        doc('aside').classList.remove('show')
+    }
+}
