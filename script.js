@@ -134,6 +134,11 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
 function updateCar() {
     if(car.length > 0){
         doc('aside').classList.add('show')
+        //Retornando o item inteiro para o carrinho
+        for(let i in car){
+            let pizzaItem = pizzaJson.find((item) => item.id == car[i].id)
+            console.log(pizzaItem)
+        }
     } else {
         doc('aside').classList.remove('show')
     }
