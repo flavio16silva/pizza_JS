@@ -191,7 +191,10 @@ function updateCar() {
             total = subtotal - desconto
 
             //Mostrando na tela o resultado dos pedidos
-            
+            doc('.subtotal span:last-child').innerHTML = `R$ ${subtotal.toFixed(2)}`
+            doc('.desconto span:last-child').innerHTML = `R$ ${desconto.toFixed(2)}`
+            doc('.total span:last-child').innerHTML = `R$ ${total.toFixed(2)}`
+
 
 
     } else {
