@@ -111,16 +111,16 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
     let size = parseInt(doc('.pizzaInfo--size.selected').getAttribute('data-key'))
 
     //Verifica identificador das pizzas para add no carrinho - criar um unico array 
-    let indentifier = pizzaJson[modalKey].id+'@'+size
+    let identifier = pizzaJson[modalKey].id+'@'+size
 
     //Adicionando as pizzas no carrinho
-    let addKey = car.findIndex((item) => item.indentifier == indentifier)
+    let addKey = car.findIndex((item) => item.identifier == identifier)
     if(addKey > -1){
         car[addKey].qt += modalQtd
     } else {
         //Objeto de retorno com os itens da pizza
         car.push({
-            indentifier,
+            identifier,
             id: pizzaJson[modalKey].id,
             size,
             qt: modalQtd
@@ -129,6 +129,14 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
     updateCar()
     closeModal()
 })
+
+//Mostrar menu do carrinho no mobile
+doc('.menu-openner').addEventListener('click', () => {
+    if(car.length > 0){
+        doc('aside').style.left = '0'
+    }
+})
+
 
 //Atualizar o carrinho de compras
 function updateCar() {
@@ -174,7 +182,7 @@ function updateCar() {
             carItem.querySelector('.cart--item--qt').innerHTML = car[i].qt
             //add e remove quantidade de pizzas do carrinho
             carItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
-                if(car[i].qt > 1){
+                if(car[i].qt > 1) {
                     car[i].qt--
                 } else {
                     car.splice(i, 1)
