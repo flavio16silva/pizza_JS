@@ -137,9 +137,15 @@ function updateCar() {
         //zerando e mostrando a lista dos itens no carrinho
         doc('.cart').innerHTML = ''
 
+        //Variaveis para desconto, subtotal e total
+        let subtotal = 0
+        let desconto = 0
+        let total = 0
+
         //Retornando o item inteiro para o carrinho
         for(let i in car){
             let pizzaItem = pizzaJson.find((item) => item.id == car[i].id)
+            subtotal += pizzaItem.price * car[i].qt           //subtotal
 
             //Clonar os itens e exibir na tela
             let carItem = doc('.models .cart--item').cloneNode(true)
@@ -180,6 +186,14 @@ function updateCar() {
             //Add os itens e exibir na tela
             doc('.cart').append(carItem)
         }
+            //Calculo dos pedidos
+            desconto = subtotal * 0.1
+            total = subtotal - desconto
+
+            //Mostrando na tela o resultado dos pedidos
+            
+
+
     } else {
         doc('aside').classList.remove('show')
     }
