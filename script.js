@@ -163,6 +163,19 @@ function updateCar() {
             carItem.querySelector('img').src = pizzaItem.img
             carItem.querySelector('.cart--item-nome').innerHTML = pizzaName
             carItem.querySelector('.cart--item--qt').innerHTML = car[i].qt
+            //add e remove quantidade de pizzas do carrinho
+            carItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
+                if(car[i].qt > 1){
+                    car[i].qt--
+                } else {
+                    car.splice(i, 1)
+                }
+                updateCar()
+            })
+            carItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
+                car[i].qt++
+                updateCar()
+            })
 
             //Add os itens e exibir na tela
             doc('.cart').append(carItem)
