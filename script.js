@@ -132,6 +132,9 @@ doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
 
 //Atualizar o carrinho de compras
 function updateCar() {
+    //atualizar carrinho no mobile
+    doc('.menu-openner span').innerHTML = car.length
+
     if(car.length > 0){
         doc('aside').classList.add('show')
         //zerando e mostrando a lista dos itens no carrinho
