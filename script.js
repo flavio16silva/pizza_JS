@@ -7,9 +7,9 @@ let modalKey = 0
 
 //Substituindo o excessivo uso do 'querySelector' no codigo por uma função
     //retorna o item:
-const doc = elemento => document.querySelector(elemento) 
+const doc = (elemento) => document.querySelector(elemento) 
     //retorna um array com os itens que achou:
-const docAll = elemento => document.querySelectorAll(elemento) 
+const docAll = (elemento) => document.querySelectorAll(elemento) 
 
 //Parametros do array = retorna cada pizza e o index - Listagem das pizzas
 pizzaJson.map((item, index) => {
@@ -64,12 +64,10 @@ pizzaJson.map((item, index) => {
             doc('.pizzaWindowArea').style.opacity = 1
         }, 200)
         
-    })
-    
+    }) 
     
     //preencher as informações em pizzaItem
     doc('.pizza-area').append(pizzaItem)
-
 })
 
 
@@ -80,15 +78,8 @@ function closeModal(){
          doc('.pizzaWindowArea').style.display = 'none'
     }, 500)
 }
-
 docAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=> {
     item.addEventListener('click', closeModal)
-})
-
-// Ação do modal de '+' da modal
-doc('.pizzaInfo--qtmais').addEventListener('click', ()=> {
-    modalQtd++
-    doc('.pizzaInfo--qt').innerHTML = modalQtd
 })
 // Ação do modal de '-' da modal
 doc('.pizzaInfo--qtmenos').addEventListener('click', ()=> {
@@ -96,6 +87,11 @@ doc('.pizzaInfo--qtmenos').addEventListener('click', ()=> {
         modalQtd--
         doc('.pizzaInfo--qt').innerHTML = modalQtd
     }
+})
+// Ação do modal de '+' da modal
+doc('.pizzaInfo--qtmais').addEventListener('click', ()=> {
+    modalQtd++
+    doc('.pizzaInfo--qt').innerHTML = modalQtd
 })
 
 //Tamanhos das pizzas na modal
@@ -109,12 +105,10 @@ docAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
 //Adicionando quantidades no carrinho
 doc('.pizzaInfo--addButton').addEventListener('click', ()=> {
     let size = parseInt(doc('.pizzaInfo--size.selected').getAttribute('data-key'))
-
     //Verifica identificador das pizzas para add no carrinho - criar um unico array 
     let identifier = pizzaJson[modalKey].id+'@'+size
-
     //Adicionando as pizzas no carrinho
-    let addKey = car.findIndex((item) => item.identifier == identifier)
+    let addKey = car.findIndex((item)=>item.identifier == identifier)
     if(addKey > -1){
         car[addKey].qt += modalQtd
     } else {
@@ -136,7 +130,9 @@ doc('.menu-openner').addEventListener('click', () => {
         doc('aside').style.left = '0'
     }
 })
-
+doc('.menu-closer').addEventListener('click', ()=> {
+    doc('aside').style.left = '100vw'
+})
 
 //Atualizar o carrinho de compras
 function updateCar() {
@@ -155,7 +151,7 @@ function updateCar() {
 
         //Retornando o item inteiro para o carrinho
         for(let i in car){
-            let pizzaItem = pizzaJson.find((item) => item.id == car[i].id)
+            let pizzaItem = pizzaJson.find((item) =>item.id == car[i].id)
             subtotal += pizzaItem.price * car[i].qt           //subtotal
 
             //Clonar os itens e exibir na tela
@@ -164,13 +160,13 @@ function updateCar() {
             let pizzaSizeName //iniciando a variavel
             switch(car[i].size){
                     case 0:
-                        pizzaSizeName = 'P'
+                        pizzaSizeName = 'P';
                         break;
                     case 1:
-                        pizzaSizeName = 'M'  
+                        pizzaSizeName = 'M';
                         break;
                     case 2:
-                        pizzaSizeName = 'G'
+                        pizzaSizeName = 'G';
                         break;   
             }            
             //Concatenar nome e tamanho da pizza e mostrar no carrinho
@@ -181,7 +177,7 @@ function updateCar() {
             carItem.querySelector('.cart--item-nome').innerHTML = pizzaName
             carItem.querySelector('.cart--item--qt').innerHTML = car[i].qt
             //add e remove quantidade de pizzas do carrinho
-            carItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
+            carItem.querySelector('.cart--item-qtmenos').addEventListener('click', ()=> {
                 if(car[i].qt > 1) {
                     car[i].qt--
                 } else {
@@ -189,7 +185,7 @@ function updateCar() {
                 }
                 updateCar()
             })
-            carItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
+            carItem.querySelector('.cart--item-qtmais').addEventListener('click', ()=> {
                 car[i].qt++
                 updateCar()
             })
@@ -210,5 +206,6 @@ function updateCar() {
 
     } else {
         doc('aside').classList.remove('show')
+        doc('aside').style.left = '100vw'
     }
 }
